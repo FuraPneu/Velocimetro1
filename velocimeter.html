@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velocímetro</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .velocimetro {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: conic-gradient(#f00 0%, #ff0 50%, #0f0 100%);
+    }
+    .ponteiro {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 5px;
+      height: 50%;
+      background: #000;
+      transform-origin: bottom;
+      transform: translateX(-50%) rotate(0deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="velocimetro mx-auto">
+          <div class="ponteiro"></div>
+        </div>
+        <div class="form-group mt-3">
+          <label for="velocidade">Velocidade (km/h):</label>
+          <input type="number" id="velocidade" class="form-control">
+        </div>
+        <button onclick="atualizarVelocimetro()" class="btn btn-primary">Atualizar Velocímetro</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function atualizarVelocimetro() {
+      var velocidade = parseFloat(document.getElementById('velocidade').value);
+      var ponteiro = document.querySelector('.ponteiro');
+      var rotacao = 180 + (velocidade * 1.8); // A cada 10 km/h, o ponteiro move 18 graus
+
+      ponteiro.style.transform = 'translateX(-50%) rotate(' + rotacao + 'deg)';
+    }
+  </script>
+</body>
+</html>
